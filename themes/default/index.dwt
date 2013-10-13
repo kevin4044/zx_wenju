@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8"/>
+    <!-- TemplateBeginEditable name="doctitle" -->
+    <title>{$page_title}</title>
+    <!-- TemplateEndEditable -->
+    <meta name="Keywords" content="{$keywords}"/>
+    <meta name="Description" content="{$description}"/>
+    <!-- TemplateBeginEditable name="head" -->
+    <!-- TemplateEndEditable -->
+    <!--
+<link href="{$xak_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common2.js,json2.js,index.js'}
+-->
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/tools/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/themes/default/common.js"></script>
+    <link rel="stylesheet" href="/tools/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/tools/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/themes/default/common.css"/>
+</head>
+<body>
+    <div class="navbar navbar-default m-topnav">
+        <div class="container">
+            <p class="navbar-text u-small">
+               欢迎来到洲翔文具,精彩每一天!
+            </p>
+            <ul class="nav navbar-nav u-small">
+                <li>
+                    <a href="">登录</a>
+                </li>
+                <li>
+                    <a href="">注册</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right u-small">
+                <li>
+                    <a href="">
+                        <img class="u-weibo" src="/themes/default/images/weixin.png" alt="微信"/>微信
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <img class="u-weibo" src="/themes/default/images/weibo.png" alt="微博"/>微博
+                    </a>
+                </li>
+                <li class="navbar-text">服务热线：123-123-123</li>
+            </ul>
+        </div>
+    </div>
+    <!--TODO:why this img not left? -->
+    <div class="container g-logo">
+        <div class="pull-left">
+            <a href="/">
+                <img src="/themes/default/images/logo.png" alt="洲翔文具，精彩每一天"/>
+            </a>
+        </div>
+        <form class="form-inline" action="/search.php">
+            <div class="form-group m-searchbar">
+                <input class="u-text" type="text" name="keywords" placeholder="请输入关键字"/>
+                <button class="btn btn-link u-submit" type="submit" >搜索</button>
+                <p class="help-block">热门搜索：1,1,2,2,3,4</p>
+            </div>
+        </form>
+    </div>
+    <div class="navbar navbar-default s-navbar" role="navigation" id="main-nav">
+        <div class="container collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown s-black" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        全部商品分类
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/" title="首页">首页</a>
+                </li>
+                <!-- {foreach name="nav_top_list" from=$navigator_list.top item=nav} -->
+                <li>
+                    <a href="{$nav.url}" title="{$nav.name}" {if $nav.opennew eq 1}target="_blank" {/if} >{$nav.name}</a>
+                </li>
+                <!-- {/foreach} -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right" >
+                <li>
+                    <a href="">
+                        <img src=""  alt=""/>
+                        我的购物车
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="nav nav-stacked m-stack-nav" id="product-tree">
+            <!--{foreach from=$categories item=cat name=index_categories}-->
+            <li class="product-toggle">
+
+                <a class="u-left-a s-dark" href="{$cat.url}">
+                    {$cat.name|escape:html}
+                    <small>{$cat.keywords}</small>
+                </a>
+                <div class="m-out-nav">
+                    <ul>
+                        <!--{foreach from=$cat.cat_id item=child name=index_child}-->
+                        <!-- {if !$smarty.foreach.index_child.first} -->
+                        <span style="color: #aca6a5">|&nbsp;&nbsp;</span>
+                        <!-- {/if} -->
+                        <li>
+                            <a class="s-dark" href="{$child.url}"><small>{$child.name|escape:html}</small> </a>
+                        </li>
+                        <!--{/foreach}-->
+                    </ul>
+                </div>
+
+            </li>
+            <!--{/foreach}-->
+        </ul>
+        <script type="text/javascript">
+            $('.product-toggle').hover(function(){
+                $(this).find('.m-out-nav').show();
+            }, function() {
+                $(this).find('.m-out-nav').hide();
+            })
+        </script>
+    </div>
+
+
+</body>
+</html>

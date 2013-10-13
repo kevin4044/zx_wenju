@@ -1,0 +1,145 @@
+/*
+Template Name: Test Theme
+Template URI: http://www.xak.cn/
+Description: Test Theme
+Version: 1.0
+Author: Xak Team
+Author URI: http://www.xak.cn/
+Logo filename: logo.gif
+*/
+
+
+/* ====================
+     公共样式
+==================== */
+body{
+	font-size:12px; 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	line-height:150%;
+	color:#333333;
+}
+
+h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,form,img,p,div,body{
+margin:0; padding:0; border:none; list-style-type:none;
+}
+
+a{
+	color:#666666;
+	text-decoration:none;
+	outline:none;
+	_hide-focus: expression(this.hideFocus=true);
+}
+a:hover{
+    color:#f32f3a;
+ 	text-decoration:none;
+}
+
+.block{
+  width:960px;
+  margin:0 auto;
+}
+.hidden{
+	overflow:hidden;}
+	
+.f_l{float:left;}
+.f_r{float:right;}
+.tl{text-align:left;}
+.tc{text-align:center;}
+.tr{text-align:right;}
+.dis{display:block;}
+.inline{display:inline;}
+.none{display:none;}
+.dashed{background:url(images/lineBg.gif) repeat-x left top; color:#3f3f3f;  padding:2px 0 3px 12px;}
+
+.clearfix:after{
+content:"."; display:block; height:0; clear:both;
+visibility:hidden;
+}
+*html .clearfix{
+ height:1%;
+}
+*+html .clearfix{
+ height:1%;
+}
+/*英文强制换行*/
+.word{word-break:break-all;}
+
+/*边框*/
+.B_blue{border:1px solid #CCC;}
+.B_input{border:1px solid #0f97ed;}
+.inputBg{border:1px solid #b3b3b3; height:18px;}
+
+/*字体颜色*/
+.f1{color:#F00;}
+.f2{color:#006bd0; font-weight:bold; margin-right:15px;}
+.f3{color:#9e9e9e;}
+.f4{color:#990000;}
+.f4_b{color:#990000; font-weight:bold;}
+.f5{font-size:14px; font-weight:bold;}
+.f6{color:#F60;}
+.f6:hover{color:#333;}
+.market{ font-size:14px; text-decoration:line-through;}
+.shop{color:#F00; font-size:14px; font-weight:600;}
+.market_s{text-decoration:line-through;}
+.shop_s{color:#F00;}
+
+.inputBorder{
+	border:1px solid #CCC;}
+
+/*按钮部分*/
+.bnt_blue{
+background:url(images/bg.gif) no-repeat 0px 0px; width:52px; height:21px;text-align:center; line-height:21px; color:#fff; border:none; cursor:pointer;}
+
+.bnt_blue_1{
+background:url(images/bg.gif) no-repeat 0px -663px; width:77px; height:21px;text-align:center; line-height:21px; color:#fff; border:none; cursor:pointer;}
+
+.bnt_blue_2{
+background:url(images/bg.gif) no-repeat 0px -696px; width:139px; height:21px;text-align:center; line-height:21px; color:#fff; border:none; cursor:pointer;}
+
+.bnt_bonus{
+background:url(images/bg.gif) no-repeat -56px 0px; width:52px; height:21px;text-align:center; line-height:21px; color:#fff; border:none; cursor:pointer;}
+
+/*模块容器*/
+.box{background:#f1f1f1; padding-bottom:2px; overflow:hidden;}
+.box_1{border:1px solid #E1DFE0; background-color:#fff;}
+.box_2{border:1px solid #c5e4ff; background-color:#edf8fe;  overflow:hidden;
+}
+.boxCenterList{padding:8px;}
+/*模块标题*/
+h3{height:33px; line-height:33px; font-size:12px;  text-align:right;
+padding:0 12px; font-weight:100;
+}
+h3.border{border:1px solid #c5e4ff; border-bottom:none;}
+h3 img{position:relative; top:7px;}
+h3 span{float:left; background:url(images/bg.gif) no-repeat 0px -570px;width:auto; height:33px; line-height:33px; font-size:14px; text-align:left;font-weight:bold; color:#F60; padding-left:12px;}
+h5{height:26px; line-height:26px; text-align:right; background-color:#4d4d4d; font-size:12px;color:#FFF; padding:0 10px 0 0;}
+h5 span{float:left; font-weight:bold; background:url(images/bg.gif) no-repeat 0 -616px; padding-left:25px;}
+h6{height:23px; line-height:23px; text-align:right; font-size:12px; background:#F6F6F6; color:#F60;border:1px solid #fff; padding-right:10px;
+}
+h6 span{float:left; padding-left:15px;}
+
+/*页面留白*/
+.blank{height:8px; line-height:8px; clear:both; visibility:hidden;}
+.blank5{height:5px; line-height:5px; clear:both; visibility:hidden;}
+.blank10{height:10px; line-height:10px; clear:both; visibility:hidden;}
+/*布局*/
+.AreaL{width:200px; float:left;}
+.AreaR{width:750px; float:right;}
+  
+  
+ /*信息提示*/
+#loader {
+  background-color: #FFFFCC;
+  border: 1px solid #CC0000;
+  position: fixed;
+  color: #CC0000;
+  z-index: 1000;
+  left: 0px;
+  bottom: 0px;
+  padding: 5px 15px;
+  filter: progid:DXImageTransform.Microsoft.BasicImage(opacity=.65);
+  opacity: 0.65;
+}
+* html #loader {
+  position: absolute;
+}

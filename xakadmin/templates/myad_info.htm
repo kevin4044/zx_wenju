@@ -1,0 +1,292 @@
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<div class="main-div">
+<form action="my_ad.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
+  <table width="100%" id="general-table">
+  	<tr>
+      <td  class="label">
+       广告标识</td>
+      <td>
+          {if $ads.tagname}
+          {$ads.tagname}
+          <input type="hidden" name="tagname" value="{$ads.tagname}" /> 
+          {else}
+          <input type="text" class="inputText" name="tagname" value="" size="35" /> 
+          {/if}
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">
+       广告名称</td>
+      <td>
+        <input type="text" class="inputText" name="adname" value="{$ads.adname}" size="35" />        
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">
+       投放范围</td>
+      <td>
+      	<select name="typeid">
+        <option value='0'>投放在没有同名标识的所有分类</option>
+      	{$cat_list}
+        </select>  
+        <font color="#FF0000">(仅对商品分类有效)</font>           
+      </td>
+    </tr>
+    
+      <tr>
+        <td class="label">广告类型</td>
+        <td>
+         <select name="adtype" onchange="showMedia(this.value)">
+         <option value='0'{if $ads.adtype eq 0} selected='selected'{/if}>代码</option>
+         <option value='1'{if $ads.adtype eq 1} selected='selected'{/if}>幻灯</option>
+         <option value='2'{if $ads.adtype eq 2} selected='selected'{/if}>图片</option>
+         <option value='3'{if $ads.adtype eq 3} selected='selected'{/if}>文字</option>
+         <option value='4'{if $ads.adtype eq 4} selected='selected'{/if}>Flash</option>
+         </select>
+        </td>
+      </tr>
+	
+    <tr>
+      <td  class="label">时间限制</td>
+      <td>
+        <select name="timeset">
+        <option value='0'{if $ads.timeset eq 0} selected='selected'{/if}>不限时间</option>
+        <option value='1'{if $ads.timeset eq 1} selected='selected'{/if}>在设定的时间内有效</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">开始时间</td>
+      <td>
+        <input name="starttime" type="text" class="inputText" id="start_time" size="22" value='{$ads.starttime}' readonly="readonly" /> 
+        <input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('start_time', '%Y-%m-%d', false, false, 'selbtn1');" value="{$lang.btn_select}" class="buttonBlue"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">结束时间</td>
+      <td>
+        <input name="endtime" type="text" class="inputText" id="end_time" size="22" value='{$ads.endtime}' readonly="readonly" /> 
+        <input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('end_time', '%Y-%m-%d', false, false, 'selbtn2');" value="{$lang.btn_select}" class="buttonBlue"/>
+      </td>
+    </tr>
+ 
+    <tbody id="0" style="{if $ads.adtype neq 0}display:none;{/if}">
+    <tr>
+        <td  class="label">代码内容:<br/><font color="#FF0000">(支持Html)</font></td>
+        <td><textarea class="inputText" name="htmlcode" cols="50" rows="7">{$ads.htmlcode}</textarea></td>
+    </tr>
+   
+    </tbody>
+  
+    <tbody id="1" style="{if $ads.adtype neq 1}display:none;{/if}">
+    <tr>
+      <td  class="label">幻灯片高度</td>
+      <td>
+        <input type="text" class="inputText" name="slide[width]" value="{$ads.slide.width}" size="35" />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">幻灯片宽度</td>
+      <td>
+        <input type="text" class="inputText" name="slide[height]" value="{$ads.slide.height}" size="35" />
+      </td>
+    </tr>
+    
+    {foreach from=$slide_list item=side}
+    <tr>
+      <td  class="label">链接{$side.num}</td>
+      <td>
+        <input type="text" class="inputText" name="slide[link][{$side.num}]" size="35" value="{$side.link}"/>       
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">标题{$side.num}</td>
+      <td>
+        <input type="text" class="inputText" name="slide[text][{$side.num}]" size="35" value="{$side.text}" />   
+      </td>
+    </tr>
+    <tr>
+      <td class="label">图片地址{$side.num}</td>
+      <td>
+        <input type="text" class="inputText" name="slide[pic][{$side.num}]" size="35" value="{$side.pic}" />
+      </td>
+     
+    </tr>
+    <tr>
+      <td  class="label">上传新图片{$side.num}</td>
+      <td>
+        <input type="file" class="inputText" name="slide_f_{$side.num}" size="35"/>       
+      </td>
+    </tr>
+    {if $action eq edit}
+    <tr>
+      <td  class="label">删除旧文件</td>
+      <td>
+        <input type="checkbox" name="del_s_{$side.num}" value="1" /> 
+      </td>
+    </tr>
+    {/if}
+
+  	{/foreach}
+    
+    </tbody>
+  
+    <tbody id="2" style="{if $ads.adtype neq 2}display:none;{/if}">
+    <tr>
+      <td  class="label">图片地址</td>
+      <td>
+        <input type='text' class="inputText" name='image[url]' size='35' value="{$ads.image.url}" />       
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">上传新图片</td>
+      <td>
+        <input type="file" class="inputText" name="image_f" size="35"/>       
+      </td>
+    </tr>
+    {if $action eq edit}
+    <tr>
+      <td  class="label">删除旧文件</td>
+      <td>
+        <input type="checkbox" name="del_i" value="1" /> 
+      </td>
+    </tr>
+    {/if}
+    <tr>
+      <td  class="label">图片链接</td>
+      <td>
+        <input type="text" class="inputText" name="image[link]" value="{$ads.image.link}" size="35" />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">图片宽度</td>
+      <td><input type="text" class="inputText" name="image[width]" value="{$ads.image.width}" size="35" /></td>
+    </tr>
+    <tr>
+      <td  class="label">图片高度</td>
+      <td><input type="text" class="inputText" name="image[height]" value="{$ads.image.height}" size="35" /></td>
+    </tr>
+    <tr>
+      <td  class="label">图片描述</td>
+      <td><input type="text" class="inputText" name="image[text]" value="{$ads.image.text}" size="35" /></td>
+    </tr>
+    </tbody>
+  
+    <tbody id="3" style="{if $ads.adtype neq 3}display:none;{/if}">
+       <tr>
+      <td  class="label">文字内容</td>
+      <td>
+        <input type="text" class="inputText" name="text[title]" value="{$ads.text.title}" size="35" />
+      </td>
+    </tr>    
+    <tr>
+      <td  class="label">文字链接</td>
+      <td><input type="text" class="inputText" name="text[link]" value="{$ads.text.link}" size="35" /></td>
+    </tr>
+    <tr>
+      <td  class="label">文字颜色<br/><font color="#FF0000">(如 red, #000000)</font></td>
+      <td><input type="text" class="inputText" name="text[color]" value="{$ads.text.color}" size="35" /></td>
+    </tr>
+    <tr>
+      <td  class="label">文字大小<br/><font color="#FF0000">(填写像素,如 12)</font></td>
+      <td><input type="text" class="inputText" name="text[size]" value="{$ads.text.size}" size="35" /></td>
+    </tr>
+    </tbody>
+  
+    <tbody id="4" style="{if $ads.adtype neq 4}display:none;{/if}">
+     <tr>
+      <td  class="label">Flash地址</td>
+      <td>
+        <input type="text" class="inputText" name="flash[link]" value="{$ads.flash.link}" size="35" />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">上传flash</td>
+      <td>
+        <input type="file" class="inputText" name="flash_f" size="35"/>       
+      </td>
+    </tr>
+    {if $action eq edit}
+    <tr>
+      <td  class="label">删除旧文件</td>
+      <td>
+        <input type="checkbox" name="del_f" value="1" /> 
+      </td>
+    </tr>
+    {/if}
+    <tr>
+      <td  class="label">Flash宽度</td>
+      <td>
+        <input type="text" class="inputText" name="flash[width]" value="{$ads.flash.width}" size="35" />
+      </td>
+    </tr>
+    <tr>
+      <td  class="label">Flash高度</td>
+      <td>
+        <input type="text" class="inputText" name="flash[height]" value="{$ads.flash.height}" size="35" />
+      </td>
+    </tr>
+   
+    </tbody>
+  
+  
+	<tbody>
+    <tr>
+        <td  class="label">过期显示内容:<br/><font color="#FF0000">(支持Html)</font></td>
+        <td><textarea class="inputText" name="expbody" cols="50" rows="7">{$ads.expbody}</textarea></td>
+    </tr>
+    </tbody>
+    
+    <tr>
+       <td class="label">&nbsp;</td>
+       <td>
+        <input type="submit" value="{$lang.button_submit}" class="buttonBlue" />
+        <input type="reset" value="{$lang.button_reset}" class="buttonBlue" />
+        <input type="hidden" name="act" value="{$form_act}" />
+        <input type="hidden" name="id" value="{$ads.aid}" />
+      </td>
+    </tr>
+ </table>
+
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+<script language="JavaScript">
+ 
+  <!--
+  var MediaList = new Array('0', '1', '2', '3','4');
+  {literal}
+  function showMedia(AdMediaType)
+  {
+    for (I = 0; I < MediaList.length; I ++)
+    {
+      if (MediaList[I] == AdMediaType)
+        document.getElementById(AdMediaType).style.display = "";
+      else
+        document.getElementById(MediaList[I]).style.display = "none";
+    }
+  }
+
+  /**
+   * 检查表单输入的数据
+   */
+  function validate()
+  {
+    validator = new Validator("theForm");
+    validator.required("ad_name",     ad_name_empty);
+    return validator.passed();
+  }
+
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+    document.forms['theForm'].reset();
+  }
+
+  //-->
+  {/literal}
+</script>
+{include file="pagefooter.htm"}

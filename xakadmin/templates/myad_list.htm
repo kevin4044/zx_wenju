@@ -1,0 +1,67 @@
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<form method="post" action="" name="listForm">
+<!-- start ads list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+<table cellpadding="3" cellspacing="1">
+  <tr>
+    <th>编号</th>
+    <th>广告名称</th>
+    <th>投放范围</th>
+    <th>广告类型</th>
+    <th>是否限时</th>
+    <th>开始时间</th>
+    <th>结束时间</th>
+    <th>调用代码</th>
+    <th>操作</th>
+  </tr>
+  {foreach from=$ads_list item=list}
+  <tr>
+    <td align="center">{$list.aid}</td>
+    <td align="center"><span>{$list.adname|escape:html}</span></td>
+    <td align="center"><span>{$list.typename|escape:html}</span></td>
+    <td align="center"><span>{if $list.adtype eq 0}代码{elseif $list.adtype eq 1}幻灯{elseif $list.adtype eq 2}图片{elseif $list.adtype eq 3}文字{elseif $list.adtype eq 4}Flash{/if}</span></td>
+    <td align="center"><span>{if $list.timeset eq 0}不限时间{else}是{/if}</span></td>
+    <td align="center"><span>{$list.starttime}</span></td>
+    <td align="center"><span>{$list.endtime}</span></td>
+    <td align="left" width="50%"><span>$smarty->assign('myad_{$list.tagname}',  get_myad('myad_{$list.tagname}',$cat_id)); <font color="#FF0000">|</font> {$myad_{$list.tagname}}</span></td>
+    <td align="center"><span>      
+      <a href="my_ad.php?act=edit&id={$list.aid}" title="{$lang.edit}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+      <a href="javascript:if(confirm('删除广告可能会导致前台无法正常显示，您确定要删除吗?')) location='my_ad.php?act=remove&id={$list.aid}&adname={$list.adname|escape:html}';" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a>
+     </span>
+    </td>
+  </tr>
+  {foreachelse}
+    <tr><td class="no-records" colspan="9">{$lang.no_ads}</td></tr>
+  {/foreach}
+  <tr>
+    <td align="right" nowrap="true" colspan="9">{include file="page.htm"}</td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+<!-- end ad_position list -->
+</form>
+
+<script type="text/javascript" language="JavaScript">
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+  {literal}
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+  {/literal}
+</script>
+{include file="pagefooter.htm"}
+{/if}

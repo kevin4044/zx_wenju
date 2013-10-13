@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Xakshop管理系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+</head>
+<?php if($type == 'left'){ ?>
+<style>
+body{
+	background: url(images/admin_main_left.png) repeat-y right top #198bc9;}
+</style>
+<?php } ?>
+<?php if($type == 'right'){ ?>
+<style>
+body{
+	background: url(images/admin_main_right.png) repeat-y left top #198bc9;}
+</style>
+<?php } ?>
+<?php if($type == 'bottom'){ ?>
+<style>
+body{
+	background: url(images/admin_bottom.png) repeat-x;}
+.admin_bottom_left{
+	width:8px;
+	height:25px;
+	position:absolute;
+	left:0px;
+	top:0px;
+	overflow:hidden;
+	z-index:8;
+	background:url(images/admin_bottom_left.png) no-repeat;
+	}
+.admin_bottom_info{
+	height:25px;
+	margin:0px 10px;
+	overflow:hidden;
+	}
+.admin_bottom_welcome{
+	height:25px;
+	line-height:25px;
+	float:left;
+	overflow:hidden;
+	color:#FFF;
+	padding-left:20px;
+	background:url(images/ico_13.png) no-repeat 4px 6px;
+	}
+.admin_bottom_welcome span{
+	color:#93d2ef;
+	font-weight:bold;}	
+.admin_bottom_copyright{
+	height:25px;
+	line-height:25px;
+	float:right;
+	overflow:hidden;
+	color:#FFF;
+	}
+.admin_bottom_copyright span{
+	color:#93d2ef;
+	}	
+.admin_bottom_right{
+	width:8px;
+	height:25px;
+	position:absolute;
+	right:0px;
+	top:0px;
+	overflow:hidden;
+	z-index:8;
+	background:url(images/admin_bottom_right.png) no-repeat;
+	}	
+</style>
+<?php } ?>
+<body>
+<?php if($type == 'bottom'){ ?>
+<div class="admin_bottom_left"></div>
+<div class="admin_bottom_info">
+	<div class="admin_bottom_welcome">
+        <?php echo $_LANG['hello']; ?>，<span><?php echo $_SESSION['admin_name']; ?></span>，<?php echo $_LANG['welcome']; ?>
+    </div>
+    <div class="admin_bottom_copyright">Xakshop <?php echo $_CFG['xak_version']; ?> &nbsp; 2009-<?php echo date('Y');?></div>
+</div>
+<div class="admin_bottom_right"></div>
+<?php } ?>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{include file="pageheader.htm"}
+<!-- start add new category form -->
+<div class="list-div">
+    <form action="category.php" method="post" name="theForm">
+    <table cellpadding="3" cellspacing="1">
+      <tr>
+        <td><strong>上级分类:</strong></td>
+        <td colspan="4">
+            <select name="parent_id">
+                <option value="0">{$lang.cat_top}</option>
+                {$cat_select}
+            </select>
+         </td>
+      </tr>		
+      <tr>
+        <th width="10%">排序</th>
+        <th width="15%">分类名称</th>
+        <th width="10%">数量单位</th>
+        <th width="15%">是否显示</th>
+        <th width="50%">&nbsp;</th>
+      </tr>
+      {foreach from=$catgory_info item=category}
+      <tr>
+        <td><input type="text" class="inputText" name="catgory_id{$category.id}" value="{$category.id}" size="5" /></td>
+        <td><input type="text" class="inputText" name="catgory_name{$category.id}" value="" size="20" /></td>
+        <td><input type="text" class="inputText" name="catgory_units{$category.id}" value="{$category.units}" size="5" /></td>
+        <td><input type="radio" name="catgory_show{$category.id}" value="1" checked="checked" />是 <input type="radio" name="catgory_show{$category.id}" value="0" />否</td>
+        <td>&nbsp;</td>
+      </tr>
+      {/foreach}
+    </table>
+    <div class="button-div">
+        <input type="submit" value="{$lang.button_submit}" class="buttonBlue" />
+        <input type="reset" value="{$lang.button_reset}" class="buttonBlue" />
+    </div>
+        <input type="hidden" name="act" value="{$form_act}" />
+    </form>
+</div>
+
+
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+onload = function()
+{
+  // 开始检查订单
+  startCheckOrder();
+}
+-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

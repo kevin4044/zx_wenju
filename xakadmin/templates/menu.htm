@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Xakshop管理系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+{literal}
+<style type="text/css">
+div,ul,li,dl,dd,dt,p,span,a,body{
+	padding:0px;
+	margin:0px;
+}
+body {
+  background: #FFFFFF;
+}
+ul,li{
+	list-style:none;}
+img{
+	border:none;}
+
+.menu_box{
+	width:100%;
+	float:left;
+	overflow:hidden;
+	border-bottom:1px solid #dddddd;
+	padding-bottom:10px;}	
+.menu_box dl{
+	width:46px;
+	float:left;
+	overflow:hidden;
+	display:inline;
+	margin:10px 1px 0px 1px;}
+.menu_box dl dt{
+	width:42px;
+	height:37px;
+	float:left;
+	overflow:hidden;
+	display:inline;
+	margin:0px 2px;
+	}	
+.menu_box dl dt img{
+	width:40px;
+	height:35px;
+	border:1px solid #ddd;}	
+.menu_box dl.cur dt img{
+	border-color:#666;}	
+.menu_box dl dd{
+	width:46px;
+	line-height:20px;
+	height:20px;
+	float:left;
+	overflow:hidden;
+	text-align:center;
+	margin-top:5px;
+	font-family:Arial, Helvetica, sans-serif;
+	}
+.menu_box dl dd a{
+	color:#444;
+	}
+.menu_box dl dd a:hover{
+	text-decoration:none;} 	
+.menu_box dl.cur dd a{
+	color:#000;} 
+.menu_box dl.cur dd a:hover{
+	color:#000;} 
+.son_menu_box{
+	width:145px;
+	float:left;
+	overflow:hidden;
+	padding:10px 0px;
+	}
+.son_menu{
+	width:145px;
+	float:left;
+	overflow:hidden;
+	display:none;}
+.son_menu li{
+	width:105px;
+	line-height:20px;
+	float:left;
+	overflow:hidden;
+	margin-top:5px;
+	padding-left:40px;
+	background:url(images/arrow.gif) no-repeat 18px 5px;
+	}		
+	
+</style>
+{insert_scripts files="../js/jquery.min.js"}
+{/literal}
+</head>
+<body>
+<div class="menu_box">
+	{foreach from=$menus item=menu key=k name=menu_foreach}
+    {if $smarty.foreach.menu_foreach.first}
+	<dl class="cur">
+    {else}
+    <dl>
+    {/if}
+    	<dt><a href="javascript:void(0);" rel="{$k}"><img src="images/{$menu.ico}.png" alt="{$menu.label}" /></a></dt>
+        <dd><a href="javascript:void(0);" rel="{$k}">{$menu.label}</a></dd>
+    </dl>
+    {/foreach} 
+</div>
+<div class="son_menu_box">
+	{foreach from=$menus item=menu key=k name=menu_foreach}
+    {if $smarty.foreach.menu_foreach.first}
+	<div class="son_menu" id="{$k}" style="display:block;">
+    {else}
+    <div class="son_menu" id="{$k}">
+    {/if}
+    	<ul>
+        	{foreach from=$menu.children item=child}
+        	<li class="{$child.ico}"><a href="{$child.action}" target="main-frame">{$child.label}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+    {/foreach}
+</div>
+
+<script type="text/javascript">
+{literal}
+$(function(){ 
+	$(".menu_box a").click(function(){
+		var N_show = $(this).parent().parent();
+		var N_show_item = $(this).attr("rel");
+		if(!$(N_show).hasClass("cur"))
+		{
+			$(".menu_box dl").removeClass("cur");
+			$(N_show).addClass("cur");
+			$(".son_menu").hide();
+			$("#"+N_show_item).show();
+		}		
+	});
+});
+{/literal}
+</script>
+</body>
+</html>
