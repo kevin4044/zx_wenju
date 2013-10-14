@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:1:{i:0;s:49:"D:/EmpireServer/zx_wenju/themes/default/index.dwt";}s:7:"expires";i:1381680643;s:8:"maketime";i:1381677043;}<!DOCTYPE html>
+<?php exit;?>a:3:{s:8:"template";a:1:{i:0;s:40:"E:/web/zx_wenju/themes/default/index.dwt";}s:7:"expires";i:1381749017;s:8:"maketime";i:1381745417;}<!DOCTYPE html>
 <html lang="zh-cn">
 <head>
 <meta name="Generator" content="Xakshop V5.0" />
@@ -13,7 +13,7 @@
     <!--
 <link href="themes/default/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/common2.js"></script><script type="text/javascript" src="js/json2.js"></script><script type="text/javascript" src="js/index.js"></script>-->
-    <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script type="text/javascript" src="/tools/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/themes/default/common.js"></script>
     <link rel="stylesheet" href="/tools/css/bootstrap.min.css"/>
@@ -26,26 +26,26 @@
             <p class="navbar-text u-small">
                欢迎来到洲翔文具,精彩每一天!
             </p>
-            <ul class="nav navbar-nav u-small">
-                <li>
-                    <a href="">登录</a>
+            <ul class="nav navbar-nav ">
+                <li >
+                    <a class="u-small" href="">登录</a>
                 </li>
-                <li>
-                    <a href="">注册</a>
+                <li >
+                    <a class="u-small" href="">注册</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav pull-right u-small">
+            <ul class="nav navbar-nav pull-right">
                 <li>
-                    <a href="">
+                    <a class="u-small" href="">
                         <img class="u-weibo" src="/themes/default/images/weixin.png" alt="微信"/>微信
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a class="u-small" href="">
                         <img class="u-weibo" src="/themes/default/images/weibo.png" alt="微博"/>微博
                     </a>
                 </li>
-                <li class="navbar-text">服务热线：123-123-123</li>
+                <li class="navbar-text u-small">服务热线：123-123-123</li>
             </ul>
         </div>
     </div>
@@ -67,7 +67,7 @@
     <div class="navbar navbar-default s-navbar" role="navigation" id="main-nav">
         <div class="container collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="dropdown s-black" data-toggle="dropdown">
+                <li class="dropdown s-black u-first-nav" data-toggle="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         全部商品分类
                         <b class="caret"></b>
@@ -86,7 +86,7 @@
                     <a href="activity.php" title="买赠专区"  >买赠专区</a>
                 </li>
                                 <li>
-                    <a href="wholesale.php" title="特价专区"  >特价专区</a>
+                    <a href="search.php?intro=promotion" title="特价专区"  >特价专区</a>
                 </li>
                                 <li>
                     <a href="exchange.php" title="积分商城"  >积分商城</a>
@@ -523,11 +523,59 @@
                     </ul>
         <script type="text/javascript">
             $('.product-toggle').hover(function(){
-                $(this).find('.m-out-nav').show();
+                $(this).find('.m-out-nav ').show();
             }, function() {
                 $(this).find('.m-out-nav').hide();
             })
         </script>
+        <div class="u-index-adv col-md-7" >
+            <img src="/themes/default/images/index_banner.jpg"    border="0" />            <p class="u-bottom">猜你喜欢</p>
+            <div class="m-likelist">
+                                <div class="col-md-4 u-nopadding">
+                    <a href="javascript:void(0);">
+                        <img src="/data/afficheimg/1381714658673125693.png"/>
+                    </a>
+                </div>
+                                <div class="col-md-4 u-nopadding">
+                    <a href="javascript:void(0);">
+                        <img src="/data/afficheimg/1381714658157230264.png"/>
+                    </a>
+                </div>
+                                <div class="col-md-4 u-nopadding">
+                    <a href="javascript:void(0);">
+                        <img src="/data/afficheimg/1381714658010586108.png"/>
+                    </a>
+                </div>
+                            </div>
+        </div>
+        <div class="g-index-mid-right">
+            <div class="u-index-bannerright">
+                <ul class="nav nav-tabs">
+                    <li class="active u-title"><a href="#tab_1" data-toggle="tab">最新动态</a></li>
+                    <li class="u-title"><a href="#tab_2" data-toggle="tab">商城公告</a></li>
+                </ul>
+                <div class="tab-content u-tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <ul>
+                                                        <li><a href="article.php?id=13">宜家 购任何一款秋冬被8.5折</a></li>
+                                                        <li><a href="article.php?id=12">PSK宝丝汀 网购狂促上演最后疯狂</a></li>
+                                                        <li><a href="article.php?id=11">乐享完美假期 关注摇滚新力量</a></li>
+                                                        <li><a href="article.php?id=10">购物达人齐分享：8000元免税额度使用指南</a></li>
+                                                        <li><a href="article.php?id=9">多重钜惠迎国庆 三亚免税店国际名品低至一折</a></li>
+                                                        <li><a href="article.php?id=8">十一精明购, 优惠三重礼</a></li>
+                                                        <li><a href="article.php?id=7">初秋补水季 CDF三亚免税店日韩美妆实拍报</a></li>
+                                                    </ul>
+                    </div>
+                    <div id="tab_2" class="tab-pane">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="u-sale-pic">
+                <img src="/data/afficheimg/1381716117208669272.png"    border="0" />            </div>
+        </div>
     </div>
 </body>
 </html>

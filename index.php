@@ -115,7 +115,13 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
     $smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
     $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
+    $smarty->assign('new_actives',     index_get_new_articles(5));// 最新动态
+    $smarty->assign('myad_index_banner', get_myad('myad_index_banner',$cat_id));//首页中间banner
+    $smarty->assign('guess_u_like',     get_myad_diy('myad_guess_u_like'));// 猜猜你喜欢
+    $smarty->assign('myad_index_sale', get_myad('myad_index_sale',$cat_id));//热销广告
 
+   // var_dump(index_get_new_articles('5'));
+    //exit();
     /* 首页主广告设置 */
     $smarty->assign('index_ad',     $_CFG['index_ad']);
     if ($_CFG['index_ad'] == 'cus')
@@ -130,6 +136,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('img_links',       $links['img']);
     $smarty->assign('txt_links',       $links['txt']);
     $smarty->assign('data_dir',        DATA_DIR);       // 数据目录
+    $smarty->assign('myad_index_banner', get_myad('myad_index_banner',$cat_id));
 
     /* 首页推荐分类 */
     $cat_recommend_res = $db->getAll("SELECT c.cat_id, c.cat_name, cr.recommend_type FROM " . $xak->table("cat_recommend") . " AS cr INNER JOIN " . $xak->table("category") . " AS c ON cr.cat_id=c.cat_id");
@@ -152,6 +159,34 @@ $smarty->display('index.dwt', $cache_id);
 /*------------------------------------------------------ */
 //-- PRIVATE FUNCTIONS
 /*------------------------------------------------------ */
+
+//获取首页幻灯片
+function get_myad_diy($code)
+{
+    $banner = unserialize(get_myad($code,0,1));
+    $list = array();
+    $auto = 1;
+    foreach($banner['pic'] as $k=>$v)
+    {
+        if($v !='')
+        {
+            $list[$k]['id'] = $auto;
+            $list[$k]['pic'] = $v;
+            if($banner['link'][$k] == '')
+            {
+                $list[$k]['link'] = 'javascript:void(0);';
+            }
+            else
+            {
+                $list[$k]['link'] = $banner['link'][$k];
+            }
+            $list[$k]['text'] = $banner['text'][$k];
+            $auto++;
+        }
+    }
+    return $list;
+}
+
 
 /** 调用发货单查询
  *
@@ -187,15 +222,27 @@ function index_get_invoice_query()
 /** 获得最新的文章列表。
  *
  * @access  private
+ * @param $aid   分类id@optional
  * @return  array
  */
-function index_get_new_articles()
+function index_get_new_articles($aid=-1)
 {
-    $sql = 'SELECT a.article_id, a.title, ac.cat_name, a.add_time, a.file_url, a.open_type, ac.cat_id, ac.cat_name ' .
+    $sql = '';
+    if ($aid == -1){
+        $sql = 'SELECT a.article_id, a.title, ac.cat_name, a.add_time, a.file_url, a.open_type, ac.cat_id, ac.cat_name ' .
             ' FROM ' . $GLOBALS['xak']->table('article') . ' AS a, ' .
-                $GLOBALS['xak']->table('article_cat') . ' AS ac' .
+            $GLOBALS['xak']->table('article_cat') . ' AS ac' .
             ' WHERE a.is_open = 1 AND a.cat_id = ac.cat_id AND ac.cat_type = 1' .
             ' ORDER BY a.article_type DESC, a.add_time DESC LIMIT ' . $GLOBALS['_CFG']['article_number'];
+    } else {
+        $sql = 'SELECT a.article_id, a.title, ac.cat_name, a.add_time, a.file_url, a.open_type, ac.cat_id, ac.cat_name ' .
+            ' FROM ' . $GLOBALS['xak']->table('article') . ' AS a, ' .
+            $GLOBALS['xak']->table('article_cat') . ' AS ac' .
+            " WHERE a.is_open = 1 AND a.cat_id = ac.cat_id AND ac.cat_type = 1 and ac.cat_id=".$aid .
+            ' ORDER BY a.article_type DESC, a.add_time DESC LIMIT ' . $GLOBALS['_CFG']['article_number'];
+
+        //echo $sql;
+    }
     $res = $GLOBALS['db']->getAll($sql);
 
     $arr = array();

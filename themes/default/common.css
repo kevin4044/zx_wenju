@@ -1,6 +1,10 @@
 .container {
-    max-width: 970px;
+    max-width: 1000px;
     min-width: 970px;
+}
+.m-topnav {
+    background-color:  #f6f6f6 ;
+    background-image: none;
 }
 .m-topnav *,.m-topnav {
     height: 40px;
@@ -13,7 +17,12 @@
 .u-small {
     font-size: 12px;
     height:10px;
+    max-height: 10px;
     min-height: 0;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+    margin-top:10px!important;
+    margin-bottom: 10px!important;
 }
 .g-logo {
     margin-bottom: 15px;
@@ -38,7 +47,13 @@
 .s-navbar {
     background-color: #d41b1b;
     background-image: none;
+    margin-bottom: 0px;
 }
+
+.s-navbar .u-first-nav {
+    width: 205px;
+}
+
 #main-nav a,#main-nav li {
     font-weight: bold;
     color: white;
@@ -52,6 +67,8 @@
 }
 
 .m-stack-nav {
+    display: inline;
+    float: left;
     position: relative;
     width: 205px;
     padding-left:5px;
@@ -80,6 +97,7 @@
     left:100%;
     top:-40px;
     width: 343px;
+    z-index: 1000;
 }
 .s-dark, s-dark a {
     color: white;
@@ -94,4 +112,91 @@
 }
 .m-out-nav li a {
     line-height: 42px;
+}
+
+.m-main-nav li {
+}
+.u-index-adv {
+    margin-right: 0;
+    padding: 0 0 3px 10px;
+}
+.u-index-adv img {
+    width: 100%;
+}
+.u-index-adv .u-bottom {
+    font-weight: bold;
+    color: red;
+    background-color: #e6e6e6;
+}
+.u-bottom {
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.u-index-adv,.u-index-bannerright {
+    margin-top: 10px;
+}
+.u-index-bannerright {
+    background-color: #f0f0f0;
+    border: 1px solid #e9e8e8;
+    width: 100%;
+}
+.u-index-bannerright .u-title {
+    width: 50%;
+}
+.u-index-bannerright li a {
+    color: #929292;
+}
+.u-index-bannerright .active, .u-index-bannerright li.active a {
+    background-color: #f7f5f5;
+}
+.u-index-bannerright li.active a {
+    color: red;
+}
+.u-index-bannerright li.active a:hover {
+    color: red;
+}
+
+.u-tab-content ul {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.u-tab-content li {
+    list-style: inside;
+    font-size: 12px;
+    height: 21px;
+    line-height: 21px;
+    overflow: hidden;
+}
+.u-tab-content li a {
+    color: #5c5c5c;
+}
+.u-tab-content li+li {
+    margin-top: 2px;
+}
+
+.m-likelist {
+    margin-top: 20px;
+    width: 100%;
+    height: 130px;
+}
+.u-nopadding {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.u-sale-pic {
+    width: 100%;
+    margin-top: 15px;
+}
+.u-sale-pic img {
+    width: 100%;
+}
+.g-index-mid-right {
+    width: 195px;
+    display: inline;
+    float: left;
 }
